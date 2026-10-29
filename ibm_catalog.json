@@ -3,7 +3,6 @@
     {
       "label": "CURE",
       "name": "cure",
-      "version": "1.0.0",
       "product_kind": "solution",
       "tags": [
         "terraform"
