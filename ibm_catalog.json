@@ -29,6 +29,7 @@
         {
           "label": "Standard",
           "name": "standard",
+          "default": true,
           "working_directory": ".",
           "install_type": "fullstack",
           "compliance": {},
