@@ -28,7 +28,7 @@
       "flavors": [
         {
           "label": "Standard",
-          "name": "standard",
+          "name": "default",
           "default": true,
           "working_directory": ".",
           "install_type": "fullstack",
