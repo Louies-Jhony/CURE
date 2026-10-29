@@ -7,8 +7,16 @@
       "tags": [
         "terraform"
       ],
+      "keywords": [
+        "cure",
+        "hibernation",
+        "security",
+        "cleanup"
+      ],
       "short_description": "CURE - Cloud Unified Resource Engine.",
       "long_description": "CURE provisions and manages cloud resources with built-in hibernation scheduling, security hardening, and cleanup automation.",
+      "offering_docs_url": "",
+      "offering_icon_url": "",
       "provider_name": "IBM",
       "features": [
         {
@@ -28,10 +36,30 @@
         {
           "label": "Standard",
           "name": "standard",
-          "working_directory": "solutions/standard",
+          "index": 1,
+          "short_description": "Standard deployment of CURE.",
           "install_type": "fullstack",
+          "working_directory": "solutions/standard",
+          "release_notes_url": "",
+          "terraform_version": ">=1.3.0",
+          "architecture": {
+            "features": [
+              {
+                "title": "Hibernation scheduling",
+                "description": "Schedule hibernation of resources by tag, region, and resource group."
+              },
+              {
+                "title": "Security hardening",
+                "description": "Automatically disable open inbound ports on security groups."
+              },
+              {
+                "title": "Resource cleanup",
+                "description": "Release unused Floating IPs and delete unattached Volumes."
+              }
+            ],
+            "diagrams": []
+          },
           "configuration": [
-
             {
               "key": "ibmcloud_api_key",
               "type": "password",
@@ -40,7 +68,6 @@
               "required": true,
               "hidden": false
             },
-
             {
               "key": "hibernation_enabled",
               "type": "boolean",
@@ -72,7 +99,7 @@
               "key": "hibernation_regions",
               "type": "string",
               "display_name": "Hibernation - Regions",
-              "description": "Comma-separated list of IBM Cloud regions to apply hibernation. Example: 'us-south,eu-de'. Only used when Hibernation is enabled.",
+              "description": "IBM Cloud region to apply hibernation. Only used when Hibernation is enabled.",
               "default_value": "us-south",
               "required": false,
               "hidden": false,
@@ -90,12 +117,11 @@
               "key": "hibernation_resource_groups",
               "type": "string",
               "display_name": "Hibernation - Resource Groups",
-              "description": "Comma-separated list of IBM Cloud resource group names to scope hibernation. Example: 'Default,prod-rg'. Only used when Hibernation is enabled.",
+              "description": "Comma-separated list of IBM Cloud resource group names to scope hibernation. Only used when Hibernation is enabled.",
               "default_value": "Default",
               "required": false,
               "hidden": false
             },
-
             {
               "key": "security_disable_open_ports",
               "type": "boolean",
@@ -105,7 +131,6 @@
               "required": true,
               "hidden": false
             },
-
             {
               "key": "cleanup_fip_enabled",
               "type": "boolean",
@@ -124,7 +149,6 @@
               "required": true,
               "hidden": false
             }
-
           ],
           "outputs": [
             {
