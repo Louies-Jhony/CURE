@@ -170,7 +170,7 @@
     {
       "label": "CURE Software",
       "name": "cure-software",
-      "product_kind": "module",
+      "product_kind": "software",
       "tags": [
         "terraform"
       ],
