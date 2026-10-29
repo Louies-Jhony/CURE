@@ -27,11 +27,9 @@
       "flavors": [
         {
           "label": "Standard",
-          "name": "default",
-          "default": true,
-          "working_directory": ".",
+          "name": "standard",
+          "working_directory": "solutions/standard",
           "install_type": "fullstack",
-          "compliance": {},
           "configuration": [
 
             {
