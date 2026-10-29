@@ -166,6 +166,152 @@
           ]
         }
       ]
+    },
+    {
+      "label": "CURE Software",
+      "name": "cure-software",
+      "product_kind": "software",
+      "tags": [
+        "terraform"
+      ],
+      "keywords": [
+        "cure",
+        "hibernation",
+        "security",
+        "cleanup"
+      ],
+      "short_description": "CURE - Cloud Unified Resource Engine (Software).",
+      "long_description": "CURE provisions and manages cloud resources with built-in hibernation scheduling, security hardening, and cleanup automation. Deploys directly via Schematics without requiring a Project.",
+      "offering_docs_url": "",
+      "offering_icon_url": "",
+      "provider_name": "IBM",
+      "features": [
+        {
+          "title": "Hibernation",
+          "description": "Schedule resource hibernation to reduce costs with configurable timing, tags, regions, and resource groups."
+        },
+        {
+          "title": "Security",
+          "description": "Automatically disable open ports to harden your deployed resources."
+        },
+        {
+          "title": "Cleanup",
+          "description": "Automatically clean up unused Floating IPs and unattached Volumes."
+        }
+      ],
+      "flavors": [
+        {
+          "label": "Standard",
+          "name": "standard",
+          "working_directory": "solutions/standard",
+          "install_type": "fullstack",
+          "configuration": [
+            {
+              "key": "ibmcloud_api_key",
+              "type": "password",
+              "display_name": "IBM Cloud API Key",
+              "description": "Your IBM Cloud API key used to authenticate and provision resources.",
+              "required": true,
+              "hidden": false
+            },
+            {
+              "key": "hibernation_enabled",
+              "type": "boolean",
+              "display_name": "Hibernation",
+              "description": "Enable or disable scheduled hibernation of resources to reduce costs when idle.",
+              "default_value": false,
+              "required": true,
+              "hidden": false
+            },
+            {
+              "key": "hibernation_timing",
+              "type": "string",
+              "display_name": "Hibernation - Timing (cron schedule)",
+              "description": "Cron expression defining when hibernation starts. Example: '0 20 * * 1-5' = weekdays at 8 PM. Only used when Hibernation is enabled.",
+              "default_value": "0 20 * * 1-5",
+              "required": false,
+              "hidden": false
+            },
+            {
+              "key": "hibernation_tag",
+              "type": "string",
+              "display_name": "Hibernation - Tag",
+              "description": "Tag applied to resources targeted for hibernation. Example: 'hibernate:true'. Only used when Hibernation is enabled.",
+              "default_value": "hibernate:true",
+              "required": false,
+              "hidden": false
+            },
+            {
+              "key": "hibernation_regions",
+              "type": "string",
+              "display_name": "Hibernation - Regions",
+              "description": "IBM Cloud region to apply hibernation. Only used when Hibernation is enabled.",
+              "default_value": "us-south",
+              "required": false,
+              "hidden": false,
+              "options": [
+                { "displayname": "US South (Dallas)",    "value": "us-south" },
+                { "displayname": "US East (Washington)", "value": "us-east"  },
+                { "displayname": "EU DE (Frankfurt)",    "value": "eu-de"    },
+                { "displayname": "EU GB (London)",       "value": "eu-gb"    },
+                { "displayname": "AU SYD (Sydney)",      "value": "au-syd"   },
+                { "displayname": "JP TOK (Tokyo)",       "value": "jp-tok"   },
+                { "displayname": "CA TOR (Toronto)",     "value": "ca-tor"   }
+              ]
+            },
+            {
+              "key": "hibernation_resource_groups",
+              "type": "string",
+              "display_name": "Hibernation - Resource Groups",
+              "description": "Comma-separated list of IBM Cloud resource group names to scope hibernation. Only used when Hibernation is enabled.",
+              "default_value": "Default",
+              "required": false,
+              "hidden": false
+            },
+            {
+              "key": "security_disable_open_ports",
+              "type": "boolean",
+              "display_name": "Security - Disable Open Ports",
+              "description": "Enable to automatically detect and disable open/unrestricted inbound ports on security groups.",
+              "default_value": false,
+              "required": true,
+              "hidden": false
+            },
+            {
+              "key": "cleanup_fip_enabled",
+              "type": "boolean",
+              "display_name": "Cleanup - Floating IPs",
+              "description": "Enable to automatically release unattached Floating IPs to avoid unnecessary charges.",
+              "default_value": false,
+              "required": true,
+              "hidden": false
+            },
+            {
+              "key": "cleanup_volumes_enabled",
+              "type": "boolean",
+              "display_name": "Cleanup - Volumes",
+              "description": "Enable to automatically delete unattached block storage volumes that are no longer in use.",
+              "default_value": false,
+              "required": true,
+              "hidden": false
+            }
+          ],
+          "outputs": [
+            {
+              "key": "hibernation_status",
+              "description": "Status of the hibernation schedule configuration."
+            },
+            {
+              "key": "security_report",
+              "description": "Summary of open ports that were disabled."
+            },
+            {
+              "key": "cleanup_report",
+              "description": "Summary of Floating IPs and Volumes that were released/deleted."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
